@@ -33,11 +33,11 @@ import org.flexdock.docking.defaults.DefaultDockingPort;
 import org.flexdock.docking.defaults.DockableComponentWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import richtercloud.document.scanner.gui.EntityPanel;
-import richtercloud.document.scanner.gui.MainPanel;
-import richtercloud.document.scanner.gui.MainPanelDockingManager;
-import richtercloud.document.scanner.gui.OCRPanel;
-import richtercloud.document.scanner.gui.OCRSelectComponent;
+import richtercloud.document.scanner.ifaces.EntityPanel;
+import richtercloud.document.scanner.ifaces.MainPanel;
+import richtercloud.document.scanner.ifaces.MainPanelDockingManager;
+import richtercloud.document.scanner.ifaces.OCRPanel;
+import richtercloud.document.scanner.ifaces.OCRSelectComponent;
 
 /**
  *

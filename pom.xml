@@ -11,7 +11,7 @@
     <dependencies>
         <dependency>
             <groupId>richtercloud</groupId>
-            <artifactId>document-scanner</artifactId>
+            <artifactId>document-scanner-ifaces</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
@@ -25,6 +25,18 @@
             <groupId>org.flexdock</groupId>
             <artifactId>flexdock-demo</artifactId>
             <version>1.2.3</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.1.3</version>
             <type>jar</type>
         </dependency>
     </dependencies>
