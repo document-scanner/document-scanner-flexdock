@@ -33,6 +33,7 @@ import org.flexdock.docking.defaults.DefaultDockingPort;
 import org.flexdock.docking.defaults.DockableComponentWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import richtercloud.document.scanner.ifaces.Constants;
 import richtercloud.document.scanner.ifaces.EntityPanel;
 import richtercloud.document.scanner.ifaces.MainPanel;
 import richtercloud.document.scanner.ifaces.MainPanelDockingManager;
@@ -98,6 +99,9 @@ public class MainPanelDockingManagerFlexdock implements MainPanelDockingManager 
             }
         };
         aNewDockable = DockingManager.getDockable(aNew);
+        aNewDockable.getDockingProperties().setDockableDesc(aNew.getFile() != null
+                ? aNew.getFile().getName()
+                : Constants.UNSAVED_NAME);
         aNewDockable.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -109,6 +113,22 @@ public class MainPanelDockingManagerFlexdock implements MainPanelDockingManager 
                     JTabbedPane dockableComponentWrapperTabbedPane = (JTabbedPane) dockableComponentWrapperComponent.getParent();
                     if(!new ArrayList<>(Arrays.asList(dockableComponentWrapperTabbedPane.getChangeListeners())).contains(tabbedPaneChangeListener)) {
                         dockableComponentWrapperTabbedPane.addChangeListener(tabbedPaneChangeListener);
+                    }
+                    //work around bug that causes the tab title of the firstly
+                    //added dockable to be "null" although
+                    //Dockable.getDockableDesc differs (by simple refreshing
+                    //all titles)
+                    for(int tabIndex = 0; tabIndex<dockableComponentWrapperTabbedPane.getTabCount(); tabIndex++) {
+                        Component tabComponent = dockableComponentWrapperTabbedPane.getComponentAt(tabIndex);
+                            //JTabbedPane.getTabComponentAt(int) returns null
+                            //because the tab component is different from the
+                            //component inside the tab<ref>http://stackoverflow.com/questions/988734/jtabbedpane-weird-behaviour</ref>
+                        assert tabComponent != null; //returns null for unknown reasons
+                        assert tabComponent instanceof OCRSelectComponent;
+                        OCRSelectComponent tabComponentCast = (OCRSelectComponent) tabComponent;
+                        dockableComponentWrapperTabbedPane.setTitleAt(tabIndex, tabComponentCast.getFile() != null
+                                ? tabComponentCast.getFile().getName()
+                                : Constants.UNSAVED_NAME);
                     }
                 }
             }
