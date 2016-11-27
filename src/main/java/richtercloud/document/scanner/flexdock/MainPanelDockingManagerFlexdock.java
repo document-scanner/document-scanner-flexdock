@@ -19,6 +19,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
@@ -89,6 +90,10 @@ public class MainPanelDockingManagerFlexdock implements MainPanelDockingManager 
                 assert e.getSource() instanceof JTabbedPane;
                 JTabbedPane eventSourceCast = (JTabbedPane) e.getSource();
                 Component eventSourceCastSelectedComponent = eventSourceCast.getSelectedComponent();
+                if(eventSourceCastSelectedComponent == null) {
+                    //is null after document has been removed
+                    return;
+                }
                 assert eventSourceCastSelectedComponent instanceof OCRSelectComponent;
                 OCRSelectComponent newOCRSelectComponent = (OCRSelectComponent) eventSourceCastSelectedComponent;
                 if(!newOCRSelectComponent.equals(mainPanel.getoCRSelectComponent())) {
@@ -172,5 +177,41 @@ public class MainPanelDockingManagerFlexdock implements MainPanelDockingManager 
         mainPanel.setoCRSelectComponent(aNew);
         //mainPanel.validate(); isn't necessary and thus a waste of resources
         //(very slow)
+    }
+
+    @Override
+    public void removeDocument(OCRSelectComponent oCRSelectComponent) {
+        assert oCRSelectComponent != null;
+        Pair<OCRPanel, EntityPanel> newPair = mainPanel.getDocumentSwitchingMap().get(oCRSelectComponent);
+        assert newPair != null;
+        OCRPanel oCRPanelNew = newPair.getKey();
+        EntityPanel entityPanelNew = newPair.getValue();
+        assert oCRPanelNew != null;
+        assert entityPanelNew != null;
+        if(mainPanel.getDocumentSwitchingMap().size() > 1) {
+            //if mainPanel.getDocumentSwitchingMap.size > 1, then at least one
+            //document will remain
+            //Get the any new document which isn't the one to be removed
+            Iterator<OCRSelectComponent> documentSwitchingMapItr = mainPanel.getDocumentSwitchingMap().keySet().iterator();
+            OCRSelectComponent aNew = documentSwitchingMapItr.next();
+            if(aNew.equals(oCRSelectComponent)) {
+                aNew = documentSwitchingMapItr.next();
+            }
+            switchDocument(oCRSelectComponent, //old
+                    aNew);
+            boolean success = DockingManager.undock(oCRSelectComponent);
+            assert success;
+        }else {
+            boolean success = DockingManager.undock(oCRPanelNew);
+            assert success;
+            success = DockingManager.undock(entityPanelNew);
+            assert success;
+            success = DockingManager.undock(oCRSelectComponent);
+            assert success;
+            mainPanel.setoCRSelectComponent(null);
+        }
+        mainPanel.getDocumentSwitchingMap().remove(oCRSelectComponent);
+            //only remove after switchDocument, i.e. the complete if-else
+            //block above
     }
 }
