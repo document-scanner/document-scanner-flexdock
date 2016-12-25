@@ -4,17 +4,19 @@
     <parent>
         <groupId>richtercloud</groupId>
         <artifactId>document-scanner-aggregator</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0-beta</version>
     </parent>
     <artifactId>document-scanner-flexdock</artifactId>
     <packaging>jar</packaging>
     <dependencies>
+        <!--document-scanner dependencies-->
         <dependency>
             <groupId>richtercloud</groupId>
             <artifactId>document-scanner-ifaces</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${richtercloud.document.scanner.version}</version>
             <type>jar</type>
         </dependency>
+        <!--Other dependencies-->
         <dependency>
             <groupId>org.flexdock</groupId>
             <artifactId>flexdock-core</artifactId>
