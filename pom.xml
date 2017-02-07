@@ -4,7 +4,7 @@
     <parent>
         <groupId>richtercloud</groupId>
         <artifactId>document-scanner-parent</artifactId>
-        <version>1.0-beta2</version>
+        <version>1.0-beta3</version>
     </parent>
     <artifactId>document-scanner-flexdock</artifactId>
     <packaging>jar</packaging>
@@ -13,7 +13,7 @@
         <dependency>
             <groupId>richtercloud</groupId>
             <artifactId>document-scanner-ifaces</artifactId>
-            <version>1.0-beta2</version>
+            <version>1.0-beta3</version>
             <type>jar</type>
         </dependency>
         <!--Other dependencies-->
