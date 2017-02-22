@@ -13,7 +13,6 @@
         <dependency>
             <groupId>richtercloud</groupId>
             <artifactId>document-scanner-ifaces</artifactId>
-            <version>1.0-beta3</version>
             <type>jar</type>
         </dependency>
         <!--Other dependencies-->
