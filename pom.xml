@@ -5,9 +5,13 @@
         <groupId>richtercloud</groupId>
         <artifactId>document-scanner-parent</artifactId>
         <version>1.0-beta4</version>
+        <relativePath>..</relativePath>
     </parent>
     <artifactId>document-scanner-flexdock</artifactId>
     <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <dependencies>
         <!--document-scanner dependencies-->
         <dependency>
