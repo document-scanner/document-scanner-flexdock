@@ -32,8 +32,6 @@ import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.defaults.DefaultDockingPort;
 import org.flexdock.docking.defaults.DockableComponentWrapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import richtercloud.document.scanner.ifaces.Constants;
 import richtercloud.document.scanner.ifaces.EntityPanel;
 import richtercloud.document.scanner.ifaces.MainPanel;
@@ -46,7 +44,6 @@ import richtercloud.document.scanner.ifaces.OCRSelectComponent;
  * @author richter
  */
 public class MainPanelDockingManagerFlexdock implements MainPanelDockingManager {
-    private final static Logger LOGGER = LoggerFactory.getLogger(MainPanelDockingManagerFlexdock.class);
     static {
         DockingManager.setFloatingEnabled(true);
     }
