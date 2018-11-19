@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package richtercloud.document.scanner.flexdock;
+package de.richtercloud.document.scanner.flexdock;
 
 import java.awt.Component;
 import java.beans.PropertyChangeEvent;
@@ -32,12 +32,12 @@ import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.defaults.DefaultDockingPort;
 import org.flexdock.docking.defaults.DockableComponentWrapper;
-import richtercloud.document.scanner.ifaces.Constants;
-import richtercloud.document.scanner.ifaces.EntityPanel;
-import richtercloud.document.scanner.ifaces.MainPanel;
-import richtercloud.document.scanner.ifaces.MainPanelDockingManager;
-import richtercloud.document.scanner.ifaces.OCRPanel;
-import richtercloud.document.scanner.ifaces.OCRSelectComponent;
+import de.richtercloud.document.scanner.ifaces.Constants;
+import de.richtercloud.document.scanner.ifaces.EntityPanel;
+import de.richtercloud.document.scanner.ifaces.MainPanel;
+import de.richtercloud.document.scanner.ifaces.MainPanelDockingManager;
+import de.richtercloud.document.scanner.ifaces.OCRPanel;
+import de.richtercloud.document.scanner.ifaces.OCRSelectComponent;
 
 /**
  *
